@@ -1,0 +1,31 @@
+{% extends 'core/homebase.html' %}
+{% load static %}
+{%block title %}Healt{%endblock%}
+{% block content  %}
+<h1 class="client_taital">ESPECIALIDADES</h1>
+{% for healt in listHealts %}
+<div class="health_section layout_padding">
+   <div class="container">
+      <h1 class="health_taital">{{healt.title}}</h1>
+      <p class="health_text">{{healt.content}}</p>
+      <div class="health_section layout_padding">
+         <div class="row">
+            <div class="col-sm-7">
+               <div class="image_main">
+                  <div>
+                     <img src="{{healt.image.url}}" alt="Avatar" class="image" style="width:100%">
+                  </div>
+                  <p class="health_text">Autor: {{healt.author}}</p>
+                  <p class="health_text">atencion los dias: </p>
+                  {% for atencion in healt.atencion.all %}
+                    {{atencion.day}} {% if not forloop.last %},{% endif %}
+                  {% endfor %}
+
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+{% endfor %}
+{% endblock  %}
